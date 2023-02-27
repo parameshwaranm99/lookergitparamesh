@@ -13,7 +13,7 @@ include: "/views/**/*.view"
 #}
 
 datagroup: paramesh_01_datagroup {
-  sql_trigger: select current_date() ;;
+  sql_trigger: select current_timestamp() ;;
 }
 
 #persist_with: ecommerce_paramesh_default_datagroup
