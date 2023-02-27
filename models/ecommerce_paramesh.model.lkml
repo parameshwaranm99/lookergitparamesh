@@ -7,12 +7,16 @@ include: "/views/**/*.view"
 # Datagroups define a caching policy for an Explore. To learn more,
 # use the Quick Help panel on the right to see documentation.
 
-datagroup: ecommerce_paramesh_default_datagroup {
+#datagroup: ecommerce_paramesh_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
-  max_cache_age: "1 hour"
+  #max_cache_age: "1 hour"
+#}
+
+datagroup: paramesh_01_datagroup {
+  sql_trigger: select current_date() ;;
 }
 
-persist_with: ecommerce_paramesh_default_datagroup
+#persist_with: ecommerce_paramesh_default_datagroup
 
 # Explores allow you to join together different views (database tables) based on the
 # relationships between fields. By joining a view into an Explore, you make those
@@ -25,7 +29,7 @@ persist_with: ecommerce_paramesh_default_datagroup
 # Typically, join parameters require that you define the join type, join relationship, and a sql_on clause.
 # Each joined view also needs to define a primary key.
 
-
+persist_with: paramesh_01_datagroup
 
 explore: imgsrc1onerroralert2 {}
 
