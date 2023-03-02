@@ -138,6 +138,12 @@ explore: orders {
 
 explore: order_items {
 
+  join: sqlpdt {
+    type: left_outer
+    sql_on: ${order_items.order_id}=${sqlpdt.orders_id} ;;
+    relationship: many_to_one
+  }
+
   join: nativepdt {
     type: left_outer
     sql_on: ${order_items.order_id}=${nativepdt.id} ;;

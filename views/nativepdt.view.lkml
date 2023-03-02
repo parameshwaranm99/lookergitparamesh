@@ -4,6 +4,7 @@
 view: nativepdt {
   derived_table: {
     datagroup_trigger: paramesh_01_datagroup
+
     explore_source: order_items {
       column: id { field: orders.id }
       column: count { field: orders.count }
