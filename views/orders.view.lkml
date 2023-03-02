@@ -45,6 +45,21 @@ view: orders {
     sql: ${TABLE}.user_id ;;
   }
 
+  dimension: paid {
+    type: yesno
+    sql: ${status}="complete" ;;
+  }
+
+  measure: reward {
+    type: number
+    sql: (CASE WHEN ${paid} THEN 2 ELSE 1 END) ;;
+  }
+
+  measure: listt {
+    type: list
+    list_field: status
+  }
+
   measure: count {
     type: count
     drill_fields: [detail*]

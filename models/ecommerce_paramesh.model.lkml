@@ -16,6 +16,7 @@ include: "/**/*.dashboard"
 
 datagroup: paramesh_01_datagroup {
   sql_trigger: select current_timestamp() ;;
+
 }
 
 #persist_with: ecommerce_paramesh_default_datagroup
@@ -33,11 +34,13 @@ datagroup: paramesh_01_datagroup {
 
 persist_with: paramesh_01_datagroup
 
-explore: imgsrc1onerroralert2 {}
+#explore: imgsrc1onerroralert2 {}
+
 
 
 
 explore: billion_orders {
+
   join: orders {
     type: left_outer
     sql_on: ${billion_orders.order_id} = ${orders.id} ;;
@@ -51,11 +54,11 @@ explore: billion_orders {
   }
 }
 
-explore: connection_reg_r3 {}
+#explore: connection_reg_r3 {}
 
-explore: dept {}
+#explore: dept {}
 
-explore: employees {}
+#explore: employees {}
 
 explore: events {
   join: users {
@@ -79,11 +82,11 @@ explore: fakeorders {
   }
 }
 
-explore: fatal_error_user_derived_base {}
+#explore: fatal_error_user_derived_base {}
 
-explore: flights {}
+#explore: flights {}
 
-explore: human {}
+#explore: human {}
 
 explore: hundred_million_orders {
   join: orders {
@@ -113,9 +116,9 @@ explore: hundred_million_orders_wide {
   }
 }
 
-explore: incremental_pdts_test {}
+#explore: incremental_pdts_test {}
 
-explore: ints {}
+#explore: ints {}
 
 explore: inventory_items {
   join: products {
@@ -134,6 +137,14 @@ explore: orders {
 }
 
 explore: order_items {
+
+  join: nativepdt {
+    type: left_outer
+    sql_on: ${order_items.order_id}=${nativepdt.id} ;;
+    relationship: many_to_one
+  }
+
+
   join: orders {
     type: left_outer
     sql_on: ${order_items.order_id} = ${orders.id} ;;
@@ -185,15 +196,15 @@ explore: order_items_vijaya {
   }
 }
 
-explore: order_status_vijaya {}
+#explore: order_status_vijaya {}
 
-explore: pegdates {}
+#explore: pegdates {}
 
-explore: person {}
+#explore: person {}
 
-explore: persons {}
+#explore: persons {}
 
-explore: persons2 {}
+#explore: persons2 {}
 
 explore: products {}
 
@@ -237,7 +248,7 @@ explore: ten_million_orders {
   }
 }
 
-explore: test {}
+#explore: test {}
 
 explore: users {}
 
@@ -249,38 +260,38 @@ explore: user_data {
   }
 }
 
-explore: vvimgsrc1onerroralert2ll {}
+#explore: vvimgsrc1onerroralert2ll {}
 
-explore: xin_test_for_bug2 {}
+#explore: xin_test_for_bug2 {}
 
-explore: xss_test {}
+#explore: xss_test {}
 
-explore: xss_test_1 {}
+#explore: xss_test_1 {}
 
-explore: xss_test_10 {}
+#explore: xss_test_10 {}
 
-explore: xss_test_11 {}
+#explore: xss_test_11 {}
 
-explore: xss_test_12 {}
+#explore: xss_test_12 {}
 
-explore: xss_test_13 {}
+#explore: xss_test_13 {}
 
-explore: xss_test_14 {}
+#explore: xss_test_14 {}
 
-explore: xss_test_15 {}
+#explore: xss_test_15 {}
 
-explore: xss_test_16 {}
+#explore: xss_test_16 {}
 
-explore: xss_test_2 {}
+#explore: xss_test_2 {}
 
-explore: xss_test_4 {}
+#explore: xss_test_4 {}
 
-explore: xss_test_5 {}
+#explore: xss_test_5 {}
 
-explore: xss_test_6 {}
+#explore: xss_test_6 {}
 
-explore: xss_test_7 {}
+#explore: xss_test_7 {}
 
-explore: xss_test_8 {}
+#explore: xss_test_8 {}
 
-explore: xss_test_9 {}
+#explore: xss_test_9 {}
