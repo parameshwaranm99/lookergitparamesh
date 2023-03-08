@@ -23,6 +23,8 @@ view: orders {
       time,
       date,
       week,
+      day_of_week,
+      day_of_month,
       month,
       quarter,
       year
