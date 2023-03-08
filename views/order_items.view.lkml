@@ -7,12 +7,18 @@ view: order_items {
   # This primary key is the unique key for this table in the underlying database.
   # You need to define a primary key in a view in order to join to other views.
 
+
   dimension: id {
     primary_key: yes
     description: "Primary_key should be unique and not null"
     type: number
     sql: ${TABLE}.id ;;
+
   }
+
+
+
+
 
   # Here's what a typical dimension looks like in LookML.
   # A dimension is a groupable field that can be used to filter query results.
@@ -38,6 +44,7 @@ view: order_items {
   dimension: phones {
     type: string
     sql: ${TABLE}.phones ;;
+    hidden: yes
   }
 
   # Dates and timestamps can be represented in Looker using a dimension group of type: time.
@@ -59,9 +66,19 @@ view: order_items {
 
   dimension: sale_price {
     type: number
-    value_format: "$0.00"
+    #value_format: "$0.00"
     sql: ${TABLE}.sale_price ;;
+    #html:
+    #{% if value > 100 %}
+    #<font color="darkgreen">{{ sale_price._rendered_value }}</font>
+    #{% elsif value > 50 %}
+    #<font color="goldenrod">{{ sale_price._rendered_value }}</font>
+    #{% else %}
+    #<font color="darkred">{{ sale_price._rendered_value }}</font>
+    #{% endif %} ;;
   }
+
+
 
 
 
@@ -78,6 +95,45 @@ view: order_items {
     type: average
     sql: ${sale_price} ;;
   }
+
+  measure: total_amountlarge {
+    type: sum
+    filters: [sale_price: ">50"]
+    value_format: "$0.00"
+    sql: ${sale_price} ;;
+  }
+
+  parameter: sale_price_metric_picker {
+    description: "Use with the Sale Price Metric measure"
+    type: unquoted
+    allowed_value: {
+      label: "Total Sale Price"
+      value: "SUM"
+    }
+    allowed_value: {
+      label: "Average Sale Price"
+      value: "AVG"
+    }
+    allowed_value: {
+      label: "Maximum Sale Price"
+      value: "MAX"
+    }
+    allowed_value: {
+      label: "Minimum Sale Price"
+      value: "MIN"
+    }
+  }
+
+  measure: sale_price_metric {
+    description: "Use with the Sale Price Metric Picker filter-only field"
+    type: number
+    label_from_parameter: sale_price_metric_picker
+    sql: {% parameter sale_price_metric_picker %}(${sale_price}) ;;
+    value_format_name: usd
+  }
+
+
+
 
 
 

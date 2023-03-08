@@ -4,6 +4,8 @@ connection: "thelook"
 # include all the views
 include: "/views/**/*.view"
 include: "/**/*.dashboard"
+include: "/lookml_paramesh_01.dashboard.lookml"
+
 
 
 # Datagroups define a caching policy for an Explore. To learn more,
@@ -14,8 +16,10 @@ include: "/**/*.dashboard"
   #max_cache_age: "1 hour"
 #}
 
+
+
 datagroup: paramesh_01_datagroup {
-  sql_trigger: select current_timestamp() ;;
+  sql_trigger: select CURRENT_TIMESTAMP();;
 
 }
 
@@ -137,6 +141,19 @@ explore: orders {
 }
 
 explore: order_items {
+  #join: incremental_sqlpdt {
+   # type: left_outer
+   # sql_on: ${order_items.order_id}=${incremental_sqlpdt.orders_id} ;;
+   # relationship: many_to_one
+  #}
+  join: incremental_npdt {
+    type: left_outer
+    sql_on: ${order_items.order_id}=${incremental_npdt.id} ;;
+    relationship: many_to_one
+  }
+
+  #always_filter:{
+  #filters: [ orders.created_date:  "2019/01/01"]}
 
   join: sqlpdt {
     type: left_outer

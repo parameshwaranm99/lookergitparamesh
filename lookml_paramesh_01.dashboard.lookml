@@ -12,7 +12,6 @@
     fields: [orders.created_date, orders.count, users.gender]
     pivots: [users.gender]
     fill_fields: [orders.created_date]
-    filters: {}
     sorts: [orders.created_date desc, users.gender]
     limit: 500
     query_timezone: America/Chicago
@@ -77,7 +76,7 @@
   - name: Created Date
     title: Created Date
     type: field_filter
-    default_value: 2017/02/28 to 2018/02/28
+    default_value: "30 days"
     allow_multiple_values: true
     required: false
     ui_config:

@@ -1,6 +1,6 @@
 view: sqlpdt {
   derived_table: {
-    datagroup_trigger: paramesh_01_datagroup
+    #datagroup_trigger: paramesh_01_datagroup
     sql: SELECT
           orders.id  AS `orders.id`,
           users.country  AS `users.country`,
@@ -9,6 +9,8 @@ view: sqlpdt {
       FROM demo_db.order_items  AS order_items
       LEFT JOIN demo_db.orders  AS orders ON order_items.order_id = orders.id
       LEFT JOIN demo_db.users  AS users ON orders.user_id = users.id
+      where {% condition user_city_filter %} users.city {% endcondition %}
+
       GROUP BY
           1,
           2,
@@ -18,6 +20,12 @@ view: sqlpdt {
       LIMIT 500
        ;;
       indexes: ["orders.id"]
+  }
+  #{% if sqlpdt.city._is_filtered%}
+   #   where users.city={{_filters['sqlpdt.city'] | sql_quote  }}
+   # {% endif %}
+  filter: user_city_filter {
+    type: string
   }
 
   measure: count {
