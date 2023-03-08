@@ -25,6 +25,7 @@ view: products {
   dimension: category {
     type: string
     sql: ${TABLE}.category ;;
+
   }
 
   dimension: department {

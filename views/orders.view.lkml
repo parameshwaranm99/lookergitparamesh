@@ -50,6 +50,22 @@ view: orders {
     sql: ${status}="complete" ;;
   }
 
+
+  #filter: new_filter_test{
+   # type: date
+  #}
+
+  #dimension: filter_start{
+   # type: date
+    #sql: {% date_start new_filter_test %} ;;
+  #}
+
+  #dimension: filter_end{
+   # type: date
+    #sql: {% date_end new_filter_test %} ;;
+  #}
+
+
   measure: reward {
     type: number
     sql: (CASE WHEN ${paid} THEN 2 ELSE 1 END) ;;

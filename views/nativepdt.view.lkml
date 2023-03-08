@@ -5,6 +5,9 @@ view: nativepdt {
   derived_table: {
     datagroup_trigger: paramesh_01_datagroup
 
+    #explore_source is like from in sql
+    #field parameter is used to specify the correct column or rename the column
+
     explore_source: order_items {
       column: id { field: orders.id }
       column: count { field: orders.count }
@@ -15,6 +18,8 @@ view: nativepdt {
         field: orders.status
         value: "complete"
       }
+      #filters parameter here is like where and having clause to the query
+      #bind_filters is used to use the templated filters to ndt (note: not pdt)
     }
     indexes: ["id"]
   }
