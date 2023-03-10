@@ -32,6 +32,29 @@ view: orders {
     sql: ${TABLE}.created_at ;;
   }
 
+  parameter: date_granularity {
+    type: unquoted
+    allowed_value: {
+      label: "Break down by Day"
+      value: "day"
+    }
+    allowed_value: {
+      label: "Break down by Month"
+      value: "month"
+    }
+  }
+
+  dimension: date {
+    sql:
+    {% if date_granularity._parameter_value == 'day' %}
+      ${created_date}
+    {% elsif date_granularity._parameter_value == 'month' %}
+      ${created_month}
+    {% else %}
+      ${created_date}
+    {% endif %};;
+  }
+
   # Here's what a typical dimension looks like in LookML.
   # A dimension is a groupable field that can be used to filter query results.
   # This dimension will be called "Status" in Explore.
@@ -71,6 +94,11 @@ view: orders {
   measure: reward {
     type: number
     sql: (CASE WHEN ${paid} THEN 2 ELSE 1 END) ;;
+  }
+
+  measure: listtt {
+    type: string
+    sql: GROUP_CONCAT(${status}) ;;
   }
 
   measure: listt {

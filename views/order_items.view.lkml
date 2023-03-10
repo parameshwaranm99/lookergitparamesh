@@ -20,6 +20,7 @@ view: order_items {
 
 
 
+
   # Here's what a typical dimension looks like in LookML.
   # A dimension is a groupable field that can be used to filter query results.
   # This dimension will be called "Inventory Item ID" in Explore.
@@ -89,6 +90,20 @@ view: order_items {
   measure: total_sale_price {
     type: sum
     sql: ${sale_price} ;;
+    html:
+    <ul>
+    <li> value: {{ value }} </li>
+    <li> rendered_value: {{ rendered_value }} </li>
+    <li> linked_value: {{ linked_value }} </li>
+    <li> link: {{ link }} </li>
+    <li> model: {{ _model._name }} </li>
+    <li> view: {{ _view._name }} </li>
+    <li> explore: {{ _explore._name }} </li>
+    <li> field: {{ _field._name }} </li>
+    <li> dialect: {{ _dialect._name }} </li>
+    <li> query timezone: {{ _query._query_timezone }} </li>
+    </ul> ;;
+
   }
 
   measure: average_sale_price {
@@ -98,9 +113,9 @@ view: order_items {
 
   measure: total_amountlarge {
     type: sum
-    filters: [sale_price: ">50"]
+    #filters: [sale_price: ">50"]
     value_format: "$0.00"
-    sql: ${sale_price} ;;
+    sql: ${sale_price}>50 ;;
   }
 
   parameter: sale_price_metric_picker {
@@ -139,6 +154,11 @@ view: order_items {
 
   measure: count {
     type: count
-    drill_fields: [id, orders.id, inventory_items.id]
+    #drill_fields: [id, orders.id, inventory_items.id]
+    drill_fields: [fields*]
+  }
+
+  set: fields {
+    fields: [id,order_items.id,inventory_item_id]
   }
 }

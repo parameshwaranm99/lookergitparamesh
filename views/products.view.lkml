@@ -7,6 +7,10 @@ view: products {
   # This primary key is the unique key for this table in the underlying database.
   # You need to define a primary key in a view in order to join to other views.
 
+  parameter: date_selector {
+    type: date_time
+    description: "Use this field to select a date to filter results by."
+  }
   dimension: id {
     primary_key: yes
     type: number
@@ -31,9 +35,9 @@ view: products {
     type: string
     sql: ${TABLE}.category ;;
     html: <a href="http://www.google.com/search?q={{value}}"><button>{{value}}</button></a>;;
-
-
   }
+
+
 
   dimension: department {
     type: string
