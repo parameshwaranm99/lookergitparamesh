@@ -45,6 +45,7 @@ view: orders {
   }
 
   dimension: date {
+    #liquid parameter with conditional
     sql:
     {% if date_granularity._parameter_value == 'day' %}
       ${created_date}
