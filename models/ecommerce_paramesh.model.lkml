@@ -140,6 +140,7 @@ explore: orders {
   }
 }
 
+
 explore: order_items {
   #join: incremental_sqlpdt {
    # type: left_outer

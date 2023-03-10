@@ -26,6 +26,7 @@ view: sqlpdt {
    # {% endif %}
   filter: user_city_filter {
     type: string
+
   }
 
   measure: count {
