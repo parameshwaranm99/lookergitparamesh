@@ -69,14 +69,14 @@ view: order_items {
     type: number
     #value_format: "$0.00"
     sql: ${TABLE}.sale_price ;;
-    #html:
-    #{% if value > 100 %}
-    #<font color="darkgreen">{{ sale_price._rendered_value }}</font>
-    #{% elsif value > 50 %}
-    #<font color="goldenrod">{{ sale_price._rendered_value }}</font>
-    #{% else %}
-    #<font color="darkred">{{ sale_price._rendered_value }}</font>
-    #{% endif %} ;;
+    # html:
+    # {% if value > 100 %}
+    # <font color="darkgreen">{{ sale_price._rendered_value }}</font>
+    # {% elsif value > 50 %}
+    # <font color="goldenrod">{{ sale_price._rendered_value }}</font>
+    # {% else %}
+    # <font color="darkred">{{ sale_price._rendered_value }}</font>
+    # {% endif %} ;;
   }
 
 
@@ -113,9 +113,9 @@ view: order_items {
 
   measure: total_amountlarge {
     type: sum
-    #filters: [sale_price: ">50"]
+    filters: [sale_price: ">50"]
     value_format: "$0.00"
-    sql: ${sale_price}>50 ;;
+    #sql: ${sale_price}>50 ;;
   }
 
   parameter: sale_price_metric_picker {
