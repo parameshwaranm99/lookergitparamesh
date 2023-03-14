@@ -6,6 +6,8 @@ include: "/views/**/*.view"
 include: "/**/*.dashboard"
 #include: "/lookml_paramesh_01.dashboard.lookml"
 include: "/dashboards/pratice1.dashboard.lookml"
+include: "/testpar.dashboard.lookml"
+
 
 
 
